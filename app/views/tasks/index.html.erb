@@ -1,0 +1,48 @@
+<div class="banner text-center" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('http://d9hhrg4mnvzow.cloudfront.net/try.hibox.co/tasks_france/a7b6b145-landing-bg60.jpg');">
+  <div class="banner-content">
+    <h1>TODOOOOO 😎</h1>
+    <p>Very cool stuff, useful and smart</p>
+    <%= link_to "NEW TASK", new_task_path, class: "btn btn-danger btn-lg" %>
+    <a href="#tasks-list" class="btn btn-primary btn-lg" id="see-tasks" >SEE TASKS</a>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row text-center">
+    <div class="col-xs-12">
+      <h1>tasks</h1>
+      <ul class="list-unstyled" id="tasks-list">
+        <% @tasks.each do |task| %>
+          <li>
+            <h2>
+              Task - <%= task.id %>: <%= task.title %>
+              <% if task.done %>
+                <i class="fa fa-check"></i>
+              <% else %>
+                <i class="fa fa-close"></i>
+              <% end %>
+            </h2>
+            <%= link_to "See all", task_path(task) %>
+            <%= link_to "Edit", edit_task_path(task) %>
+            <%= link_to "Delete", task_path(task),
+              method: :delete,
+              data: { confirm: "Are you sure?" }
+            %>
+          </li>
+        <% end %>
+        <br>
+        <%= link_to "Add a new task", new_task_path, class: "btn btn-primary" %>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script>
+  $('a').click(function(){
+    $('html, body').animate({
+        scrollTop: $( $(this).attr('href') ).offset().top
+    }, 1000);
+    return false;
+});
+</script>
+

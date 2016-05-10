@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-6 col-xs-offset-3">
+      <h2><%= @task.title %></h2>
+      <p>Description: <%= @task.description %></p>
+      <p>
+        Status:
+        <% if @task.done %>
+          <%= "Done" %>
+        <% else %>
+          <%= "To do" %>
+        <% end %>
+      </p>
+      <%= link_to "Back to my tasks", tasks_path %>
+    </div>
+  </div>
+</div>
